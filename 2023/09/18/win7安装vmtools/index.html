@@ -216,16 +216,18 @@
         </header>
 
         <div class="post-content">
-            <h1 id="windows-7-虚拟机镜像安装vmtools"><a href="#windows-7-虚拟机镜像安装vmtools" class="headerlink" title="windows 7 虚拟机镜像安装vmtools"></a>windows 7 虚拟机镜像安装vmtools</h1><h2 id="·容易出现的问题及原因"><a href="#·容易出现的问题及原因" class="headerlink" title="·容易出现的问题及原因"></a>·容易出现的问题及原因</h2><p>在安装VMware Tools过程中，弹出错误提示“装程序无法自动安装 Virtual Machine Communication Interface Sockets(VSock)驱动程序。必须手动安装此驱动程序”，最终导致安装失败。</p>
-<p><img src="C:\Users\16287\AppData\Roaming\Typora\typora-user-images\image-20230918130630122.png" alt="image-20230918130630122"></p>
+            <p>title：windows 7 虚拟机镜像安装vmtools</p>
+<p>categories: 虚拟机安装</p>
+<h2 id="·容易出现的问题及原因"><a href="#·容易出现的问题及原因" class="headerlink" title="·容易出现的问题及原因"></a>·容易出现的问题及原因</h2><p>在安装VMware Tools过程中，弹出错误提示“装程序无法自动安装 Virtual Machine Communication Interface Sockets(VSock)驱动程序。必须手动安装此驱动程序”，最终导致安装失败。</p>
+<p><img src="https://noyiz-github-io.oss-cn-beijing.aliyuncs.com/H:%5Cpicgo%5Cimageimage-20230918130630122.png" alt="image-20230918130630122"></p>
 <p>由于微软更新了驱动程序签名算法，2019年开始弃用SHA1，改用SHA2。猜测较高版本的VMware Tools驱动程序使用SHA2，而Windows7只支持SHA1，需要下载安装补丁kb4474419来支持SHA2算法。</p>
 <h2 id="·解决办法"><a href="#·解决办法" class="headerlink" title="·解决办法"></a>·解决办法</h2><p>补丁下载地址：<a target="_blank" rel="noopener" href="http://www.jxdown.com/soft/43565.html">http://www.jxdown.com/soft/43565.html</a></p>
-<p><img src="C:\Users\16287\AppData\Roaming\Typora\typora-user-images\image-20230917184431886.png" alt="image-20230917184431886"></p>
+<p><img src="https://noyiz-github-io.oss-cn-beijing.aliyuncs.com/H:%5Cpicgo%5Cimageimage-20230917184431886.png" alt="image-20230917184431886"></p>
 <p>安装完成后需要重启系统</p>
-<p><img src="C:\Users\16287\AppData\Roaming\Typora\typora-user-images\image-20230917184640600.png" alt="image-20230917184640600"></p>
-<p><img src="C:\Users\16287\AppData\Roaming\Typora\typora-user-images\image-20230917184657899.png" alt="image-20230917184657899"></p>
-<p><img src="C:\Users\16287\AppData\Roaming\Typora\typora-user-images\image-20230917184729197.png" alt="image-20230917184729197"></p>
-<p><img src="C:\Users\16287\AppData\Roaming\Typora\typora-user-images\image-20230917184811750.png" alt="image-20230917184811750"></p>
+<p><img src="https://noyiz-github-io.oss-cn-beijing.aliyuncs.com/H:%5Cpicgo%5Cimageimage-20230917184640600.png" alt="image-20230917184640600"></p>
+<p><img src="https://noyiz-github-io.oss-cn-beijing.aliyuncs.com/H:%5Cpicgo%5Cimageimage-20230917184657899.png" alt="image-20230917184657899"></p>
+<p><img src="https://noyiz-github-io.oss-cn-beijing.aliyuncs.com/H:%5Cpicgo%5Cimageimage-20230917184729197.png" alt="image-20230917184729197"></p>
+<p><img src="https://noyiz-github-io.oss-cn-beijing.aliyuncs.com/H:%5Cpicgo%5Cimageimage-20230917184811750.png" alt="image-20230917184811750"></p>
 <p>安装完VMware tools之后需要再重启一次系统。</p>
 
         </div>
