@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Yo Poemi">
+
+
+
+
+    <meta name="keywords" content="blog">
+
+
+<title>爬虫-明朝那些事儿 | YoPoemi&#39;s blog</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">YoPoemi&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">YoPoemi&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    var tocbot_timer;
+    var DEPTH_MAX = 6; // 为 6 时展开所有
+    var tocbot_default_config = {
+        tocSelector: '.tocbot-list',
+        contentSelector: '.post-content',
+        headingSelector: 'h1, h2, h3, h4, h5',
+        orderedList: false,
+        scrollSmooth: true,
+        onClick: extend_click,
+    };
+
+    function extend_click() {
+        clearTimeout(tocbot_timer);
+        tocbot_timer = setTimeout(function() {
+            tocbot.refresh(obj_merge(tocbot_default_config, {
+                hasInnerContainers: true
+            }));
+        }, 420); // 这个值是由 tocbot 源码里定义的 scrollSmoothDuration 得来的
+    }
+
+    document.ready(function() {
+        tocbot.init(obj_merge(tocbot_default_config, {
+            collapseDepth: 1
+        }));
+    });
+
+    function expand_toc() {
+        var b = document.querySelector('.tocbot-toc-expand');
+        var expanded = b.getAttribute('data-expanded');
+        expanded ? b.removeAttribute('data-expanded') : b.setAttribute('data-expanded', true);
+        tocbot.refresh(obj_merge(tocbot_default_config, {
+            collapseDepth: expanded ? 1 : DEPTH_MAX
+        }));
+        b.innerText = expanded ? 'Expand all' : 'Collapse all';
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+    function obj_merge(target, source) {
+        for (var item in source) {
+            if (source.hasOwnProperty(item)) {
+                target[item] = source[item];
+            }
+        }
+        return target;
+    }
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">爬虫-明朝那些事儿</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Yo Poemi</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">九月 23, 2023&nbsp;&nbsp;21:20:27</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E7%88%AC%E8%99%AB/">爬虫</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h2 id="·概述"><a href="#·概述" class="headerlink" title="·概述"></a>·概述</h2><p>​	主要用来练习一下<strong>异步爬虫</strong>和xpath语法，需要多多理解async异步操作，其实主要就是分为启动协程—创建协程任务—等待协程任务完成，主要的处理函数即为在创建协程任务时需要传入的函数。</p>
+<p>​	而在主要的处理函数中，其实从一开始就是异步操作了，因此发送网络请求（用的是aiohttp）需要异步，写入文件需要异步，而且需要挂起（IO操作）都需要await（例如本例中的等待响应，aiofiles写入文件）。</p>
+<p>​	主要思想就是以上这些。其中<strong>xpath语法</strong>中的细节一定需要注意（比如xpath获取到的其实是节点列表），否则很容易解析失败，报错。本例还涉及到了<strong>os文件操作</strong>，其实只要文件路径正确了，os的文件操作就很容易了。</p>
+<h2 id="·代码"><a href="#·代码" class="headerlink" title="·代码"></a>·代码</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> asyncio</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> aiofiles</span><br><span class="line"><span class="keyword">import</span> aiohttp</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">from</span> lxml <span class="keyword">import</span> etree</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_chapter_urls</span>(<span class="params">url</span>):</span><br><span class="line">    <span class="comment"># 用于拼接有效的url</span></span><br><span class="line">    all_url = <span class="string">&quot;https://www.56zw.com&quot;</span></span><br><span class="line">    headers = &#123;</span><br><span class="line">        <span class="string">&#x27;User-Agent&#x27;</span>: <span class="string">&#x27;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    page_source = requests.get(url, headers=headers)</span><br><span class="line">    page_source.encoding = <span class="string">&#x27;gbk&#x27;</span></span><br><span class="line">    <span class="comment"># 解析提取url</span></span><br><span class="line">    et = etree.HTML(page_source.text)</span><br><span class="line">    <span class="comment"># 将每一部的url独立存储在字典中</span></span><br><span class="line">    book_url = &#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 将正本书分部下载</span></span><br><span class="line">    book_names = et.xpath(<span class="string">&#x27;//div[@id=&quot;list&quot;]/dl/dt[position() &gt; 2]/text()&#x27;</span>)</span><br><span class="line">    folder_path = <span class="string">&#x27;./明朝那些事儿/&#x27;</span></span><br><span class="line">    <span class="keyword">for</span> book_name <span class="keyword">in</span> book_names:</span><br><span class="line">        <span class="comment"># 构建文件的完整路径</span></span><br><span class="line">        folder_path_for_file = os.path.join(folder_path, book_name)</span><br><span class="line">        <span class="comment"># 创建文件夹,如果文件夹已存在则不报错</span></span><br><span class="line">        os.makedirs(folder_path_for_file, exist_ok=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 提取所有的dt和dl元素，除了第一个dt和与之关联的dl</span></span><br><span class="line">    dt_elements = et.xpath(<span class="string">&#x27;//div[@id=&quot;list&quot;]/dl/dt[position() &gt; 2]&#x27;</span>)</span><br><span class="line">    <span class="comment"># 记录dt索引</span></span><br><span class="line">    <span class="built_in">id</span> = <span class="number">3</span></span><br><span class="line">    <span class="keyword">for</span> dt_element <span class="keyword">in</span> dt_elements:</span><br><span class="line">        url_links = []</span><br><span class="line">        current_dt = dt_element.text</span><br><span class="line">        book_url[current_dt] = &#123;&#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 选择当前dt下的所有dd元素</span></span><br><span class="line">        xpath_exp = <span class="string">&quot;./following-sibling::*[count(preceding-sibling::dt)=&#123;&#125;]/a&quot;</span>.<span class="built_in">format</span>(<span class="built_in">id</span>)</span><br><span class="line">        a_elements = dt_element.xpath(xpath_exp)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 提取每一个dd下的a标签</span></span><br><span class="line">        <span class="keyword">for</span> a_element <span class="keyword">in</span> a_elements:</span><br><span class="line">            url_link = all_url + a_element.xpath(<span class="string">&#x27;./@href&#x27;</span>)[<span class="number">0</span>]</span><br><span class="line">            url_links.append(url_link)</span><br><span class="line"></span><br><span class="line">        book_url[current_dt] = url_links</span><br><span class="line"></span><br><span class="line">        <span class="built_in">id</span> += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> book_url</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 提取每一章节的内容</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">download_one</span>(<span class="params">key, url</span>):</span><br><span class="line">    <span class="keyword">async</span> <span class="keyword">with</span> aiohttp.ClientSession() <span class="keyword">as</span> session:</span><br><span class="line">        <span class="keyword">async</span> <span class="keyword">with</span> session.get(url) <span class="keyword">as</span> resp:</span><br><span class="line">            page_source = <span class="keyword">await</span> resp.text()</span><br><span class="line">            <span class="comment"># 解析正文内容</span></span><br><span class="line">            et = etree.HTML(page_source)</span><br><span class="line">            <span class="comment"># 提取标题</span></span><br><span class="line">            chapter_title = et.xpath(<span class="string">&quot;//div[@class=&#x27;bookname&#x27;]/h1/text()&quot;</span>)[<span class="number">0</span>]</span><br><span class="line">            <span class="comment"># 提取正文</span></span><br><span class="line">            chapter_content = et.xpath(<span class="string">&quot;//div[@id=&#x27;content&#x27;]/text()&quot;</span>)</span><br><span class="line">            <span class="comment"># 将文本节点合并成一个单一的字符串</span></span><br><span class="line">            real_content = <span class="string">&#x27;&#x27;</span>.join(chapter_content)</span><br><span class="line">            content = real_content.replace(<span class="string">&#x27;&amp;nbsp;&#x27;</span>, <span class="string">&#x27;&#x27;</span>).replace(<span class="string">&#x27;&lt;br&gt;&#x27;</span>, <span class="string">&#x27;&#x27;</span>)</span><br><span class="line"></span><br><span class="line">            <span class="comment"># 将小说内容写入文件</span></span><br><span class="line">            folder_name = <span class="string">&#x27;./明朝那些事儿/&#x27;</span> + key</span><br><span class="line">            <span class="comment"># 构建文件名</span></span><br><span class="line">            filename = folder_name + <span class="string">f&quot;/<span class="subst">&#123;chapter_title&#125;</span>.txt&quot;</span></span><br><span class="line">            <span class="comment"># 写入文件</span></span><br><span class="line">            <span class="keyword">async</span> <span class="keyword">with</span> aiofiles.<span class="built_in">open</span>(filename, mode=<span class="string">&#x27;w&#x27;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> file:</span><br><span class="line">                <span class="keyword">await</span> file.write(content)</span><br><span class="line"></span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&#x27;下载完毕&#x27;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 协程任务</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">download</span>(<span class="params">key, urls</span>):</span><br><span class="line">    tasks = []</span><br><span class="line">    <span class="keyword">for</span> url <span class="keyword">in</span> urls:</span><br><span class="line">        t = asyncio.create_task(download_one(key, url))</span><br><span class="line">        tasks.append(t)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">await</span> asyncio.wait(tasks)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    url = <span class="string">&quot;https://www.56zw.com/0_665/&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 1.请求总页面，拿到所有章节url</span></span><br><span class="line">    urls = get_chapter_urls(url)</span><br><span class="line">    <span class="comment"># 启动协程任务，提取每一章节的内容</span></span><br><span class="line">    <span class="keyword">for</span> key, url_list <span class="keyword">in</span> urls.items():</span><br><span class="line">        asyncio.run(download(key, url_list))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    main()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="·结果"><a href="#·结果" class="headerlink" title="·结果"></a>·结果</h2><p><img src="https://noyiz-github-io.oss-cn-beijing.aliyuncs.com/H:%5Cpicgo%5Cimageimage-20230923213110984.png" alt="image-20230923213110984"></p>
+<p><img src="https://noyiz-github-io.oss-cn-beijing.aliyuncs.com/H:%5Cpicgo%5Cimageimage-20230923213125486.png" alt="image-20230923213125486"></p>
+<p><img src="https://noyiz-github-io.oss-cn-beijing.aliyuncs.com/H:%5Cpicgo%5Cimageimage-20230923213139802.png" alt="image-20230923213139802"></p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Yo Poemi</span>
+                    </p>
+                
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span><strong>Trust Yourself.</strong></span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/%E5%BC%82%E6%AD%A5%E7%88%AC%E8%99%AB/"># 异步爬虫</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2023/09/23/ARP%E6%94%BB%E5%87%BB%E5%AE%9E%E9%AA%8C/">ARP攻击实验</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Yo Poemi | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>
