@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Yo Poemi">
+
+
+
+
+    <meta name="keywords" content="blog">
+
+
+<title>logistic映射 | YoPoemi&#39;s blog</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">YoPoemi&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">YoPoemi&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    var tocbot_timer;
+    var DEPTH_MAX = 6; // 为 6 时展开所有
+    var tocbot_default_config = {
+        tocSelector: '.tocbot-list',
+        contentSelector: '.post-content',
+        headingSelector: 'h1, h2, h3, h4, h5',
+        orderedList: false,
+        scrollSmooth: true,
+        onClick: extend_click,
+    };
+
+    function extend_click() {
+        clearTimeout(tocbot_timer);
+        tocbot_timer = setTimeout(function() {
+            tocbot.refresh(obj_merge(tocbot_default_config, {
+                hasInnerContainers: true
+            }));
+        }, 420); // 这个值是由 tocbot 源码里定义的 scrollSmoothDuration 得来的
+    }
+
+    document.ready(function() {
+        tocbot.init(obj_merge(tocbot_default_config, {
+            collapseDepth: 1
+        }));
+    });
+
+    function expand_toc() {
+        var b = document.querySelector('.tocbot-toc-expand');
+        var expanded = b.getAttribute('data-expanded');
+        expanded ? b.removeAttribute('data-expanded') : b.setAttribute('data-expanded', true);
+        tocbot.refresh(obj_merge(tocbot_default_config, {
+            collapseDepth: expanded ? 1 : DEPTH_MAX
+        }));
+        b.innerText = expanded ? 'Expand all' : 'Collapse all';
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+    function obj_merge(target, source) {
+        for (var item in source) {
+            if (source.hasOwnProperty(item)) {
+                target[item] = source[item];
+            }
+        }
+        return target;
+    }
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">logistic映射</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Yo Poemi</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">十月 8, 2023&nbsp;&nbsp;16:45:35</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E5%A4%8D%E6%9D%82%E7%BD%91%E7%BB%9C/">复杂网络</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>x<sub>n+1</sub> &#x3D; rx<sub>n</sub>(1-x<sub>n</sub>)，<strong>Logistic模型可以描述生物种群的演化，它可以表示成一维非线性迭代方程</strong>。r被称为分支参数，只有当3.5699456 &lt; r ≤ 4 ，Logistic映射才具有混沌性质。</p>
+<p>观察：</p>
+<ol>
+<li>当初始值相同时，观察r对Logistic映射造成的影响；</li>
+<li>当3.5699456 &lt; r ≤ 4 ，观察不同初始值对Logistic映射造成的影响.</li>
+</ol>
+<h2 id="数值分析"><a href="#数值分析" class="headerlink" title="数值分析"></a>数值分析</h2><h3 id="r-2-6-x0-0-4"><a href="#r-2-6-x0-0-4" class="headerlink" title="r &#x3D; 2.6, x0 &#x3D; 0.4"></a>r &#x3D; 2.6, x0 &#x3D; 0.4</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">r = <span class="number">2.6</span></span><br><span class="line">x = [<span class="number">0.4</span>]</span><br><span class="line">n=np.linspace(<span class="number">1</span>,<span class="number">20</span>,<span class="number">20</span>)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">19</span>):</span><br><span class="line">        x.append(r * x[-<span class="number">1</span>] * (<span class="number">1</span> - x[-<span class="number">1</span>]))</span><br><span class="line">plt.scatter(n, x)</span><br><span class="line">plt.plot(n, x, linestyle=<span class="string">&#x27;solid&#x27;</span>, color=<span class="string">&#x27;blue&#x27;</span>)</span><br><span class="line">plt.title(<span class="built_in">format</span>(x[<span class="number">19</span>], <span class="string">&#x27;.4f&#x27;</span>))</span><br><span class="line">plt.xlabel(<span class="string">&#x27;i&#x27;</span>)</span><br><span class="line">plt.ylabel(<span class="string">&#x27;x&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">str</span>(<span class="number">1</span>- <span class="number">1</span> / r))</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://noyiz-github-io.oss-cn-beijing.aliyuncs.com/H:%5Cpicgo%5CimageH%3A%255Cpicgo%255Cimageimage-20231008152736518.png" alt="image-20231008152736518"></p>
+<blockquote>
+<p><code>print(str(1 - 1 / r))</code>：计算控制参数r对应的稳定状态，并将其打印出来。稳定状态计算公式是1 - 1&#x2F;r，它告诉我们在给定参数下，Logistic Map最终会趋向于什么样的值。</p>
+</blockquote>
+<h3 id="r-2-6-x0-0-1-1-0"><a href="#r-2-6-x0-0-1-1-0" class="headerlink" title="r&#x3D;2.6,x0 &#x3D; [0.1-1.0]"></a>r&#x3D;2.6,x0 &#x3D; [0.1-1.0]</h3><p><img src="https://noyiz-github-io.oss-cn-beijing.aliyuncs.com/H:%5Cpicgo%5CimageH%3A%255Cpicgo%255Cimageimage-20231008154831923.png" alt="image-20231008154831923"></p>
+<p><strong>这些都将收敛到0.6154，可见初值对最终的结果影响不大，这意味着可以省略初始值对结果的影响。</strong></p>
+<h3 id="r-1-3-88-x0-0-8"><a href="#r-1-3-88-x0-0-8" class="headerlink" title="r &#x3D; [1-3.88],x0 &#x3D; 0.8"></a>r &#x3D; [1-3.88],x0 &#x3D; 0.8</h3><p><img src="https://noyiz-github-io.oss-cn-beijing.aliyuncs.com/H:%5Cpicgo%5CimageH%3A%255Cpicgo%255Cimageimage-20231008160438339.png" alt="image-20231008160438339"></p>
+<p><strong>可以看到，随着r的增大，稳态人口将从0(r&lt;&#x3D;1)，逐步升高。但是可以看到从r等于3左右开始系统开始摆动,最后将不再收敛至某一个确定的值，而是在两个值之间不停的摆动，称为2周期摆动（在3.56左右则出现了4周期摆动）。</strong></p>
+<h3 id="r-3-3-x0-0-1-1-0"><a href="#r-3-3-x0-0-1-1-0" class="headerlink" title="r &#x3D; 3.3,x0 &#x3D; [0.1-1.0]"></a>r &#x3D; 3.3,x0 &#x3D; [0.1-1.0]</h3><p><img src="https://noyiz-github-io.oss-cn-beijing.aliyuncs.com/H:%5Cpicgo%5CimageH%3A%255Cpicgo%255Cimageimage-20231008161826346.png" alt="image-20231008161826346"></p>
+<p><strong>可以看到不同的初值对这两个值没有什么影响，下面我们把系统向2周期演化的进程细化出来</strong>（x&#x3D;0.8,r&#x3D;2.7-3.6）,<strong>r等于3.5左右开始系统开始变为4周期摆动.</strong>(x&#x3D;0.8,r&#x3D;3.46-3.91),<strong>可以看到系统从4周期开始变为8周期。随着r的增大，可以看到系统出现了混沌现象.</strong></p>
+<p>省略…</p>
+<p>可以总结为，当r较小，最终图像会收敛到一个值，随着r增大，图像会逐渐周期摆动，且周期会逐渐增大，最终呈现混沌现象，这时就出现了对初始条件的敏感性，<strong>初值的改变将很大的影响期间值的变化规律。</strong></p>
+<p><img src="https://noyiz-github-io.oss-cn-beijing.aliyuncs.com/H:%5Cpicgo%5CimageH%3A%255Cpicgo%255Cimageimage-20231008164115495.png" alt="image-20231008164115495"></p>
+<h2 id="Feigenbaum图"><a href="#Feigenbaum图" class="headerlink" title="Feigenbaum图"></a>Feigenbaum图</h2><p><strong>为了研究r值对分岔现象的影响，可以取不同的初值对所有的r进行计算。方法是给定a初值，对不同的r值循环计算新的s，共循环1100次，循环计算1000次后开始画图.所得图形如图所示，叫做费根鲍姆（Feigenbaum）图。代码如下</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> tqdm <span class="keyword">import</span> tqdm</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">LogisticMap</span>(<span class="params">start</span>):</span><br><span class="line">    r = np.arange(<span class="number">0</span>, <span class="number">4</span>, <span class="number">0.0001</span>) <span class="comment">#设置变量范围</span></span><br><span class="line">    x = start  <span class="comment"># 给定初值</span></span><br><span class="line">    iters = <span class="number">1000</span>  <span class="comment"># 不进行输出的迭代次数</span></span><br><span class="line">    last = <span class="number">100</span>  <span class="comment"># 最后画出结果的迭代次数</span></span><br><span class="line">    plt.figure(figsize=(<span class="number">20</span>, <span class="number">8</span>))</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> tqdm(<span class="built_in">range</span>(iters+last)):</span><br><span class="line">        x = r * x * (<span class="number">1</span> - x)</span><br><span class="line">        <span class="keyword">if</span> i &gt;= iters:</span><br><span class="line">            plt.plot(r, x, <span class="string">&#x27;,k&#x27;</span>, alpha=<span class="number">0.15</span>)  <span class="comment"># alpha设置透明度</span></span><br><span class="line">        plt.title(<span class="string">&#x27;logistic map&#x27;</span>)</span><br><span class="line">        plt.xlabel(<span class="string">&#x27;r&#x27;</span>)</span><br><span class="line">        plt.ylabel(<span class="string">&#x27;x&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    plt.show()</span><br><span class="line">LogisticMap(<span class="number">0.5</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://noyiz-github-io.oss-cn-beijing.aliyuncs.com/H:%5Cpicgo%5CimageH%3A%255Cpicgo%255Cimageimage-20231008163517141.png" alt="image-20231008163517141"></p>
+<p>​	<strong>可以清楚地看出系统进入混沌的过程（平衡态 —- 周期 —- 准周期 —- 混沌）。而且我们可以看到这个图具有分形的特点。每个有空白的部分我们称之为窗口期，即系统稳定的做周期运动，如图所示。最终，系统将走向混沌。</strong></p>
+<ul>
+<li>3.0000 &lt; r &lt; 3.4495 二周期循环</li>
+<li>3.4496 &lt; r &lt; 3.5441 四周期循环</li>
+<li>3.5441 &lt; r &lt; 3.5644 八周期循环</li>
+<li>3.5644 &lt; r &lt; 3.5688 十六周期循环</li>
+</ul>
+<h2 id="Feigenbaum常数"><a href="#Feigenbaum常数" class="headerlink" title="Feigenbaum常数"></a>Feigenbaum常数</h2><p>利用分叉点的r值，计算相邻分叉点的间距之比，说的的极限的值叫做Feigenbaum常数，这个常数不依赖于方程。如图所示：</p>
+<p><img src="https://noyiz-github-io.oss-cn-beijing.aliyuncs.com/H:%5Cpicgo%5CimageH%3A%255Cpicgo%255Cimageimage-20231008163629449.png" alt="image-20231008163629449"></p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Yo Poemi</span>
+                    </p>
+                
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span><strong>Trust Yourself.</strong></span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2023/09/25/%E6%A0%88%E6%BA%A2%E5%87%BA%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E8%B7%B5/">栈溢出原理与实践</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Yo Poemi | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>
