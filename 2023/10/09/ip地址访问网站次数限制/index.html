@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Yo Poemi">
+
+
+
+
+    <meta name="keywords" content="blog">
+
+
+<title>ip地址访问网站次数限制 | YoPoemi&#39;s blog</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">YoPoemi&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">YoPoemi&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    var tocbot_timer;
+    var DEPTH_MAX = 6; // 为 6 时展开所有
+    var tocbot_default_config = {
+        tocSelector: '.tocbot-list',
+        contentSelector: '.post-content',
+        headingSelector: 'h1, h2, h3, h4, h5',
+        orderedList: false,
+        scrollSmooth: true,
+        onClick: extend_click,
+    };
+
+    function extend_click() {
+        clearTimeout(tocbot_timer);
+        tocbot_timer = setTimeout(function() {
+            tocbot.refresh(obj_merge(tocbot_default_config, {
+                hasInnerContainers: true
+            }));
+        }, 420); // 这个值是由 tocbot 源码里定义的 scrollSmoothDuration 得来的
+    }
+
+    document.ready(function() {
+        tocbot.init(obj_merge(tocbot_default_config, {
+            collapseDepth: 1
+        }));
+    });
+
+    function expand_toc() {
+        var b = document.querySelector('.tocbot-toc-expand');
+        var expanded = b.getAttribute('data-expanded');
+        expanded ? b.removeAttribute('data-expanded') : b.setAttribute('data-expanded', true);
+        tocbot.refresh(obj_merge(tocbot_default_config, {
+            collapseDepth: expanded ? 1 : DEPTH_MAX
+        }));
+        b.innerText = expanded ? 'Expand all' : 'Collapse all';
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+    function obj_merge(target, source) {
+        for (var item in source) {
+            if (source.hasOwnProperty(item)) {
+                target[item] = source[item];
+            }
+        }
+        return target;
+    }
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">ip地址访问网站次数限制</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Yo Poemi</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">十月 9, 2023&nbsp;&nbsp;22:42:01</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8/">信息系统安全</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h2 id="·要求"><a href="#·要求" class="headerlink" title="·要求"></a>·要求</h2><p>​	限制每个IP地址重复尝试的次数和限制时间。</p>
+<h2 id="·Local-Storage"><a href="#·Local-Storage" class="headerlink" title="·Local Storage"></a>·Local Storage</h2><h3 id="·发现问题"><a href="#·发现问题" class="headerlink" title="·发现问题"></a>·发现问题</h3><p>​	每一次登录时，每个ip地址的访问次数都归零，想到如何持久化存储的问题。</p>
+<h3 id="·什么是Local-Storage"><a href="#·什么是Local-Storage" class="headerlink" title="·什么是Local Storage"></a>·什么是Local Storage</h3><p>浏览器的 Local Storage 是一种用于在客户端（浏览器）上存储持久性数据的 Web API。它允许网页在用户的浏览器中存储键值对数据，这些数据将在页面关闭后仍然保持存在，并且可以跨会话和页面访问。这个特性主要是用来作为本地存储来使用的，解决了cookie存储空间不足的问题(cookie中每条cookie的存储空间为4k)。</p>
+<h3 id="·特点"><a href="#·特点" class="headerlink" title="·特点"></a>·特点</h3><ol>
+<li><strong>简单的键值对存储</strong>：Local Storage 提供了一个简单的键值对存储方式，可以存储字符串形式的数据。</li>
+<li><strong>持久性</strong>：数据存储在用户的浏览器中，并且不受页面刷新、关闭或浏览器重新启动的影响。这意味着你可以在不同的会话和页面之间访问相同的数据。</li>
+<li><strong>容量限制</strong>：浏览器对 Local Storage 有存储容量限制，通常在几兆字节（MB）到数十兆字节之间。具体的限制因浏览器而异。</li>
+<li><strong>同源策略</strong>：Local Storage 遵循同源策略，这意味着数据只能被存储在同一域名下的页面中，并且不能被其他域名的页面访问。</li>
+<li><strong>简单的 API</strong>：Local Storage 提供了一组简单的 JavaScript API，使开发者可以轻松存储、读取和删除数据。</li>
+</ol>
+<h3 id="·Local-Storage常用方法"><a href="#·Local-Storage常用方法" class="headerlink" title="·Local Storage常用方法"></a>·Local Storage常用方法</h3><p><strong>清空localStorage</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">localStorage</span>.<span class="title function_">clear</span>()    <span class="comment">// undefined    </span></span><br><span class="line"><span class="variable language_">localStorage</span>            <span class="comment">// Storage &#123;length: 0&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>存储数据</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">localStorage</span>.<span class="title function_">setItem</span>(<span class="string">&quot;name&quot;</span>,<span class="string">&quot;caibin&quot;</span>) <span class="comment">//存储名字为name值为caibin的变量</span></span><br><span class="line"><span class="variable language_">localStorage</span>.<span class="property">name</span> = <span class="string">&quot;caibin&quot;</span>; <span class="comment">// 等价于上面的命令</span></span><br><span class="line"><span class="variable language_">localStorage</span> <span class="comment">// Storage &#123;name: &quot;caibin&quot;, length: 1&#125;</span></span><br><span class="line"></span><br><span class="line">---------------------------------------------------------</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (!<span class="variable language_">window</span>.<span class="property">localStorage</span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;浏览器版本太低，不支持localStorage&#x27;</span>)</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="keyword">let</span> storage = <span class="variable language_">window</span>.<span class="property">localStorage</span></span><br><span class="line">  storage.<span class="title function_">setItem</span>(<span class="string">&#x27;a&#x27;</span>, <span class="number">1</span>) <span class="comment">// 存储名为a值为1的变量</span></span><br><span class="line">  storage.<span class="property">b</span> = <span class="number">2</span>           <span class="comment">// 存储名为b值为2的变量</span></span><br><span class="line">  storage[<span class="string">&#x27;c&#x27;</span>] = <span class="number">3</span>        <span class="comment">// 存储名为c值为3的变量</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>读取数据</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">localStorage</span>.<span class="title function_">getItem</span>(<span class="string">&quot;name&quot;</span>) <span class="comment">//caibin,读取保存在localStorage对象里名为name的变量的值</span></span><br><span class="line"><span class="variable language_">localStorage</span>.<span class="property">name</span> <span class="comment">// &quot;caibin&quot;</span></span><br><span class="line"><span class="variable language_">localStorage</span>.<span class="title function_">valueOf</span>() <span class="comment">//读取存储在localStorage上的所有数据</span></span><br><span class="line"><span class="variable language_">localStorage</span>.<span class="title function_">key</span>(<span class="number">0</span>) <span class="comment">// 读取第一条数据的变量名(键值)</span></span><br><span class="line"><span class="comment">//遍历并输出localStorage里存储的名字和值</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>; i&lt;<span class="variable language_">localStorage</span>.<span class="property">length</span>;i++)&#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;localStorage里存储的第&#x27;</span>+i+<span class="string">&#x27;条数据的名字为：&#x27;</span>+<span class="variable language_">localStorage</span>.<span class="title function_">key</span>(i)+<span class="string">&#x27;,值为：&#x27;</span>+<span class="variable language_">localStorage</span>.<span class="title function_">getItem</span>(<span class="variable language_">localStorage</span>.<span class="title function_">key</span>(i)));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">-------------------------------------</span><br><span class="line"></span><br><span class="line">storage.<span class="title function_">getItem</span>(<span class="string">&#x27;a&#x27;</span>) <span class="comment">// 1 读取保存在storage对象里名为a的变量值</span></span><br><span class="line">storage.<span class="property">b</span>            <span class="comment">// 2 读取保存在storage对象里名为b的变量值</span></span><br><span class="line">storage[<span class="string">&#x27;c&#x27;</span>]         <span class="comment">// 3 读取保存在storage对象里名为c的变量值</span></span><br><span class="line">storage.<span class="title function_">key</span>(<span class="number">0</span>)       <span class="comment">// 1 根据key值读取数据,key(0)代表对象的第一条数据</span></span><br><span class="line">storage.<span class="title function_">valueOf</span>()    <span class="comment">// 读取保存在storage对象上的全部数据</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>修改数据</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (!<span class="variable language_">window</span>.<span class="property">localStorage</span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;浏览器版本太低，不支持localStorage&#x27;</span>)</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="keyword">let</span> storage = <span class="variable language_">window</span>.<span class="property">localStorage</span></span><br><span class="line">  <span class="comment">// 写入a字段</span></span><br><span class="line">  storage.<span class="property">a</span> = <span class="number">1</span></span><br><span class="line">  <span class="comment">// 修改a字段</span></span><br><span class="line">  storage.<span class="property">a</span> = <span class="string">&#x27;@Demi&#x27;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>删除某个变量</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">localStorage</span>.<span class="title function_">removeItem</span>(<span class="string">&quot;name&quot;</span>); <span class="comment">//undefined</span></span><br><span class="line"><span class="variable language_">localStorage</span> <span class="comment">// Storage &#123;length: 0&#125; 可以看到之前保存的name变量已经从localStorage里删除了</span></span><br><span class="line"></span><br><span class="line">---------------------------------------------------</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (!<span class="variable language_">window</span>.<span class="property">localStorage</span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;浏览器版本太低，不支持localStorage&#x27;</span>)</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="keyword">let</span> storage = <span class="variable language_">window</span>.<span class="property">localStorage</span></span><br><span class="line">  storage.<span class="title function_">clear</span>()         <span class="comment">// 删除所有键值对</span></span><br><span class="line">  storage.<span class="title function_">removeItem</span>(<span class="string">&#x27;a&#x27;</span>) <span class="comment">// 删除指定的键值对</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>检查localStorage里是否保存某个变量</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 这些数据都是测试的，是在我当下环境里的，只是demo哦～</span></span><br><span class="line"><span class="variable language_">localStorage</span>.<span class="title function_">hasOwnProperty</span>(<span class="string">&#x27;name&#x27;</span>) <span class="comment">// true</span></span><br><span class="line"><span class="variable language_">localStorage</span>.<span class="title function_">hasOwnProperty</span>(<span class="string">&#x27;sex&#x27;</span>)  <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>将数组转为本地字符串</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="string">&#x27;aa&#x27;</span>,<span class="string">&#x27;bb&#x27;</span>,<span class="string">&#x27;cc&#x27;</span>]; <span class="comment">// [&quot;aa&quot;,&quot;bb&quot;,&quot;cc&quot;]</span></span><br><span class="line"><span class="variable language_">localStorage</span>.<span class="property">arr</span> = arr <span class="comment">//[&quot;aa&quot;,&quot;bb&quot;,&quot;cc&quot;]</span></span><br><span class="line"><span class="variable language_">localStorage</span>.<span class="property">arr</span>.<span class="title function_">toLocaleString</span>(); <span class="comment">// &quot;aa,bb,cc&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>将JSON存储到localStorage里</strong></p>
+<p>我们一般会将一个对象存入<code>localstorage</code>中，但是localstorage会自动将对象数据转换成字符串形式，这时候我们可以使用<code>JSON.stringify()</code>这个方法，来将数据转换成JSON字符串存入localstorage存入，当读取的时候再使用<code>JSON.parse（）</code>方法读取出来。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> students = &#123;</span><br><span class="line">    <span class="attr">xiaomin</span>: &#123;</span><br><span class="line">        <span class="attr">name</span>: <span class="string">&quot;xiaoming&quot;</span>,</span><br><span class="line">        <span class="attr">grade</span>: <span class="number">1</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">teemo</span>: &#123;</span><br><span class="line">        <span class="attr">name</span>: <span class="string">&quot;teemo&quot;</span>,</span><br><span class="line">        <span class="attr">grade</span>: <span class="number">3</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">students = <span class="title class_">JSON</span>.<span class="title function_">stringify</span>(students);  <span class="comment">//将JSON转为字符串存到变量里</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(students);</span><br><span class="line"><span class="variable language_">localStorage</span>.<span class="title function_">setItem</span>(<span class="string">&quot;students&quot;</span>,students);<span class="comment">//将变量存到localStorage里</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> newStudents = <span class="variable language_">localStorage</span>.<span class="title function_">getItem</span>(<span class="string">&quot;students&quot;</span>);</span><br><span class="line">newStudents = <span class="title class_">JSON</span>.<span class="title function_">parse</span>(students); <span class="comment">//转为JSON</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(newStudents); <span class="comment">// 打印出原先对象</span></span><br><span class="line"></span><br><span class="line">---------------------------------------------</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (!<span class="variable language_">window</span>.<span class="property">localStorage</span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;浏览器版本太低，不支持localStorage&#x27;</span>)</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="keyword">let</span> storage = <span class="variable language_">window</span>.<span class="property">localStorage</span></span><br><span class="line">  <span class="keyword">let</span> data = &#123;</span><br><span class="line">     <span class="attr">name</span>: <span class="string">&#x27;Demi&#x27;</span>,</span><br><span class="line">     <span class="attr">sex</span>: <span class="string">&#x27;woman&#x27;</span>,</span><br><span class="line">     <span class="attr">hobby</span>: <span class="string">&#x27;program&#x27;</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 将对象转换成JSON格式存入localStorage</span></span><br><span class="line">  <span class="keyword">let</span> dataValue = <span class="title class_">JSON</span>.<span class="title function_">stringify</span>(data)</span><br><span class="line">  storage.<span class="title function_">setItem</span>(<span class="string">&#x27;data&#x27;</span>, dataValue)</span><br><span class="line"> </span><br><span class="line">  <span class="comment">// 从localstorage中取出数据转换成对象格式</span></span><br><span class="line">  <span class="keyword">let</span> json = storage.<span class="title function_">getItem</span>(<span class="string">&#x27;data&#x27;</span>)</span><br><span class="line">  <span class="keyword">let</span> jsonObj = <span class="title class_">JSON</span>.<span class="title function_">parse</span>(json)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="·从浏览器获取ip地址"><a href="#·从浏览器获取ip地址" class="headerlink" title="·从浏览器获取ip地址"></a>·从浏览器获取ip地址</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">getIPAddress</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="title function_">fetch</span>(<span class="string">&#x27;https://api.ipify.org/?format=json&#x27;</span>)</span><br><span class="line">    .<span class="title function_">then</span>(<span class="function"><span class="params">response</span> =&gt;</span> response.<span class="title function_">json</span>())</span><br><span class="line">    .<span class="title function_">then</span>(<span class="function"><span class="params">data</span> =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(data.<span class="property">ip</span>));</span><br><span class="line">&#125;	</span><br></pre></td></tr></table></figure>
+
+<h2 id="·代码"><a href="#·代码" class="headerlink" title="·代码"></a>·代码</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><br><span class="line">        <span class="comment">// IP地址尝试次数限制</span></span><br><span class="line">        <span class="keyword">var</span> <span class="variable constant_">MAX_ATTEMPTS</span> = <span class="number">5</span>; <span class="comment">// 每个IP地址最多尝试5次</span></span><br><span class="line">      </span><br><span class="line">        <span class="comment">// 从 Local Storage 中获取保存的尝试次数对象，如果没有则创建一个新的对象</span></span><br><span class="line">        <span class="keyword">var</span> ipAttempts = <span class="title class_">JSON</span>.<span class="title function_">parse</span>(<span class="variable language_">localStorage</span>.<span class="title function_">getItem</span>(<span class="string">&#x27;ipAttempts&#x27;</span>)) || &#123;&#125;;</span><br><span class="line">      </span><br><span class="line">        <span class="comment">// 从 Local Storage 中获取上次重置计数的时间戳，如果没有则设置为0</span></span><br><span class="line">        <span class="keyword">var</span> lastResetTimestamp = <span class="built_in">parseInt</span>(<span class="variable language_">localStorage</span>.<span class="title function_">getItem</span>(<span class="string">&#x27;lastResetTimestamp&#x27;</span>)) || <span class="number">0</span>;</span><br><span class="line">      </span><br><span class="line">        <span class="keyword">function</span> <span class="title function_">allowRequest</span>(<span class="params">ipAddress</span>) &#123;</span><br><span class="line">          <span class="comment">// 获取当前时间戳</span></span><br><span class="line">          <span class="keyword">var</span> currentTime = <span class="keyword">new</span> <span class="title class_">Date</span>().<span class="title function_">getTime</span>();</span><br><span class="line">      </span><br><span class="line">          <span class="comment">// 检查是否需要重置计数</span></span><br><span class="line">          <span class="keyword">if</span> (currentTime - lastResetTimestamp &gt;= <span class="number">24</span> * <span class="number">60</span> * <span class="number">60</span> * <span class="number">1000</span>) &#123;</span><br><span class="line">            <span class="comment">// 超过24小时，重置计数</span></span><br><span class="line">            ipAttempts = &#123;&#125;;</span><br><span class="line">            lastResetTimestamp = currentTime;</span><br><span class="line">      </span><br><span class="line">            <span class="comment">// 保存更新后的ipAttempts和时间戳到 Local Storage</span></span><br><span class="line">            <span class="variable language_">localStorage</span>.<span class="title function_">setItem</span>(<span class="string">&#x27;ipAttempts&#x27;</span>, <span class="title class_">JSON</span>.<span class="title function_">stringify</span>(ipAttempts));</span><br><span class="line">            <span class="variable language_">localStorage</span>.<span class="title function_">setItem</span>(<span class="string">&#x27;lastResetTimestamp&#x27;</span>, lastResetTimestamp);</span><br><span class="line">          &#125;</span><br><span class="line">      </span><br><span class="line">          <span class="comment">// 检查IP地址是否在ipAttempts对象中</span></span><br><span class="line">          <span class="keyword">if</span> (ipAddress <span class="keyword">in</span> ipAttempts) &#123;</span><br><span class="line">            <span class="comment">// 如果IP地址已存在，则增加尝试次数</span></span><br><span class="line">            ipAttempts[ipAddress]++;</span><br><span class="line">          &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// 如果IP地址不存在，则设置尝试次数为1</span></span><br><span class="line">            ipAttempts[ipAddress] = <span class="number">1</span>;</span><br><span class="line">          &#125;</span><br><span class="line">      </span><br><span class="line">          <span class="comment">// 检查尝试次数是否超过限制</span></span><br><span class="line">          <span class="keyword">if</span> (ipAttempts[ipAddress] &gt; <span class="variable constant_">MAX_ATTEMPTS</span>) &#123;</span><br><span class="line">            <span class="title function_">alert</span>(<span class="string">&quot;今日访问次数已满！&quot;</span>);</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>; <span class="comment">// 超过尝试次数限制</span></span><br><span class="line">          &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// 保存更新后的ipAttempts对象到 Local Storage</span></span><br><span class="line">            <span class="variable language_">localStorage</span>.<span class="title function_">setItem</span>(<span class="string">&#x27;ipAttempts&#x27;</span>, <span class="title class_">JSON</span>.<span class="title function_">stringify</span>(ipAttempts));</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>; <span class="comment">// 允许提交表单</span></span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      </span><br><span class="line">        <span class="comment">// 在表单提交时调用该函数</span></span><br><span class="line">        <span class="keyword">function</span> <span class="title function_">enter</span>(<span class="params"></span>) &#123;</span><br><span class="line">          <span class="keyword">var</span> username = <span class="variable language_">document</span>.<span class="property">loginform</span>.<span class="property">username</span>.<span class="property">value</span>;</span><br><span class="line">          <span class="keyword">var</span> password = <span class="variable language_">document</span>.<span class="property">loginform</span>.<span class="property">password</span>.<span class="property">value</span>;</span><br><span class="line">          <span class="keyword">var</span> ipAddress = <span class="title function_">getUserIPAddress</span>(); <span class="comment">// 获取用户IP地址的方法需要根据你的实际情况来实现</span></span><br><span class="line">      </span><br><span class="line">          <span class="keyword">if</span> (<span class="title function_">allowRequest</span>(ipAddress)) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>; <span class="comment">// 允许提交表单</span></span><br><span class="line">          &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>; <span class="comment">// 禁止提交表单</span></span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      </span><br><span class="line">        <span class="comment">// 获取用户IP地址的示例方法（需要根据实际情况实现）</span></span><br><span class="line">        <span class="keyword">function</span> <span class="title function_">getUserIPAddress</span>(<span class="params"></span>) &#123;</span><br><span class="line">          <span class="keyword">var</span> ipAddress = <span class="string">&quot;&quot;</span>; <span class="comment">// 默认值</span></span><br><span class="line">      </span><br><span class="line">          <span class="title function_">fetch</span>(<span class="string">&#x27;https://api.ipify.org/?format=json&#x27;</span>)</span><br><span class="line">          .<span class="title function_">then</span>(<span class="function"><span class="params">response</span> =&gt;</span> response.<span class="title function_">json</span>())</span><br><span class="line">          .<span class="title function_">then</span>(<span class="function"><span class="params">data</span> =&gt;</span> &#123;</span><br><span class="line">            ipAddress = data.<span class="property">ip</span>;</span><br><span class="line">            <span class="comment">// 在这里你可以处理获取到的IP地址</span></span><br><span class="line">            <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;客户端的IP地址是：&quot;</span> + ipAddress);</span><br><span class="line">          &#125;);</span><br><span class="line">      </span><br><span class="line">          <span class="keyword">return</span> ipAddress; <span class="comment">// 返回IP地址</span></span><br><span class="line">        &#125;</span><br><span class="line">      &lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>·注意前端javascript脚本的调试！</p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Yo Poemi</span>
+                    </p>
+                
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span><strong>Trust Yourself.</strong></span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8/"># 信息系统安全</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2023/10/08/logistic%E6%98%A0%E5%B0%84/">logistic映射</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Yo Poemi | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>
