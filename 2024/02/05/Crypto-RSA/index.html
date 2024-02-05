@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Yo Poemi">
+
+
+
+
+    <meta name="keywords" content="blog">
+
+
+<title>Crypto-RSA | YoPoemi&#39;s blog</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">YoPoemi&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">YoPoemi&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    var tocbot_timer;
+    var DEPTH_MAX = 6; // 为 6 时展开所有
+    var tocbot_default_config = {
+        tocSelector: '.tocbot-list',
+        contentSelector: '.post-content',
+        headingSelector: 'h1, h2, h3, h4, h5',
+        orderedList: false,
+        scrollSmooth: true,
+        onClick: extend_click,
+    };
+
+    function extend_click() {
+        clearTimeout(tocbot_timer);
+        tocbot_timer = setTimeout(function() {
+            tocbot.refresh(obj_merge(tocbot_default_config, {
+                hasInnerContainers: true
+            }));
+        }, 420); // 这个值是由 tocbot 源码里定义的 scrollSmoothDuration 得来的
+    }
+
+    document.ready(function() {
+        tocbot.init(obj_merge(tocbot_default_config, {
+            collapseDepth: 1
+        }));
+    });
+
+    function expand_toc() {
+        var b = document.querySelector('.tocbot-toc-expand');
+        var expanded = b.getAttribute('data-expanded');
+        expanded ? b.removeAttribute('data-expanded') : b.setAttribute('data-expanded', true);
+        tocbot.refresh(obj_merge(tocbot_default_config, {
+            collapseDepth: expanded ? 1 : DEPTH_MAX
+        }));
+        b.innerText = expanded ? 'Expand all' : 'Collapse all';
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+    function obj_merge(target, source) {
+        for (var item in source) {
+            if (source.hasOwnProperty(item)) {
+                target[item] = source[item];
+            }
+        }
+        return target;
+    }
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">Crypto-RSA</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Yo Poemi</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">二月 5, 2024&nbsp;&nbsp;10:04:51</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/CTF/">CTF</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h2 id="RSA算法原理"><a href="#RSA算法原理" class="headerlink" title="RSA算法原理"></a>RSA算法原理</h2><p>可参考：</p>
+<p><a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2013/06/rsa_algorithm_part_one.html">http://www.ruanyifeng.com/blog/2013/06/rsa_algorithm_part_one.html</a><br><a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2013/07/rsa_algorithm_part_two.html">http://www.ruanyifeng.com/blog/2013/07/rsa_algorithm_part_two.html</a></p>
+<h3 id="公钥与私钥的产生"><a href="#公钥与私钥的产生" class="headerlink" title="公钥与私钥的产生"></a>公钥与私钥的产生</h3><ol>
+<li>随机选择两个不同大质数 p和 q，计算 N&#x3D;p×q</li>
+<li>根据欧拉函数，求得 φ(N)&#x3D;φ(p)φ(q)&#x3D;(p−1)(q−1)</li>
+<li>选择一个小于 φ(N)的整数 e，使 e和 φ(N) 互质。并求得 e 关于 φ(N) 的模反元素，命名为 d，有 ed≡1(modφ(N))</li>
+<li>将 p和 q的记录销毁</li>
+</ol>
+<p>此时，(N,e)是公钥，(N,d) 是私钥。</p>
+<h3 id="消息加密"><a href="#消息加密" class="headerlink" title="消息加密"></a>消息加密</h3><p>首先需要将消息 以一个双方约定好的格式转化为一个<strong>小于 N，且与 N 互质</strong>的整数 m。如果消息太长，可以将消息分为几段，这也就是我们所说的块加密，后对于每一部分利用如下公式加密：</p>
+<p><img src="https://noyiz-github-io.oss-cn-beijing.aliyuncs.com/H:%5Cpicgo%5Cimageimage-20240205101715918.png" alt="image-20240205101715918"></p>
+<h3 id="消息解密"><a href="#消息解密" class="headerlink" title="消息解密"></a>消息解密</h3><p>利用密钥 d进行解密。</p>
+<p><img src="https://noyiz-github-io.oss-cn-beijing.aliyuncs.com/H:%5Cpicgo%5Cimageimage-20240205101742877.png" alt="image-20240205101742877"></p>
+<h3 id="正确性证明"><a href="#正确性证明" class="headerlink" title="正确性证明"></a>正确性证明</h3><p><a target="_blank" rel="noopener" href="https://ctf-wiki.org/crypto/asymmetric/rsa/rsa_theory/">https://ctf-wiki.org/crypto/asymmetric/rsa/rsa_theory/</a></p>
+<h2 id="整数分解工具"><a href="#整数分解工具" class="headerlink" title="整数分解工具"></a>整数分解工具</h2><ul>
+<li>网站分解，<a target="_blank" rel="noopener" href="http://factordb.com/">factor.db</a></li>
+<li>命令行分解，<a target="_blank" rel="noopener" href="https://github.com/ryosan-470/factordb-pycli">factordb-pycli</a>，借用 factordb 数据库。</li>
+<li><a target="_blank" rel="noopener" href="https://sourceforge.net/projects/yafu/">yafu</a></li>
+</ul>
+<h2 id="RSA实现"><a href="#RSA实现" class="headerlink" title="RSA实现"></a>RSA实现</h2><p>参考链接：<a target="_blank" rel="noopener" href="https://pycryptodome.readthedocs.io/en/latest/src/public_key/rsa.html#">https://pycryptodome.readthedocs.io/en/latest/src/public_key/rsa.html#</a></p>
+<p>由于使用RSA加密时，消息的长度不能超过n，所以一般使用对称加密方法加密消息，再使用RSA加密对称加密密钥。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">from</span> Crypto.PublicKey <span class="keyword">import</span> RSA</span><br><span class="line"><span class="keyword">from</span> Crypto.Random <span class="keyword">import</span> get_random_bytes</span><br><span class="line"><span class="keyword">from</span> Crypto.Cipher <span class="keyword">import</span> AES, PKCS1_OAEP</span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    This function is used to generate public key and private key.</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">create_rsa_keys</span>():</span><br><span class="line">    <span class="comment"># create a new RSA key pairs</span></span><br><span class="line">    <span class="comment"># Crypto.PublicKey.RSA.generate(bits, randfunc=None, e=65537)</span></span><br><span class="line">    key = RSA.generate(<span class="number">2048</span>)  <span class="comment"># Returns an RSA key object(RSAKey, with private key)</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># export an RSA private key and protect it with a password.</span></span><br><span class="line">    <span class="comment"># export_key(format=&#x27;PEM&#x27;, passphrase=None, pkcs=1, protection=None, randfunc=None)</span></span><br><span class="line">    pwd = <span class="string">b&#x27;secret&#x27;</span></span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;my_private_key.bin&quot;</span>, mode=<span class="string">&#x27;wb&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">        data = key.export_key(passphrase=pwd,</span><br><span class="line">                              pkcs=<span class="number">8</span>,</span><br><span class="line">                              protection=<span class="string">&#x27;PBKDF2WithHMAC-SHA512AndAES256-CBC&#x27;</span></span><br><span class="line">                              )</span><br><span class="line">        f.write(data)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment"># export the public key</span></span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;my_public_key.pem&#x27;</span>, mode=<span class="string">&#x27;wb&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">        f.write(key.public_key().export_key())</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    This function is used to encrypt the file, which uses the public key.</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">encrypt</span>(<span class="params">filename</span>):</span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(filename, mode=<span class="string">&#x27;rb&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">        data = f.read()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(filename, mode=<span class="string">&#x27;wb&#x27;</span>) <span class="keyword">as</span> encrypted_file:</span><br><span class="line">        recipient_key = RSA.import_key(<span class="built_in">open</span>(<span class="string">&#x27;my_public_key.pem&#x27;</span>).read())</span><br><span class="line">        session_key = get_random_bytes(<span class="number">16</span>)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Encrypt the session key with the public RSA key</span></span><br><span class="line">        cipher_rsa = PKCS1_OAEP.new(recipient_key)</span><br><span class="line">        encrypted_file.write(cipher_rsa.encrypt(session_key))</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Encrypt the data with the AES session key</span></span><br><span class="line">        cipher_aes = AES.new(session_key, AES.MODE_EAX)</span><br><span class="line"></span><br><span class="line">        ciphertext, tag = cipher_aes.encrypt_and_digest(data)</span><br><span class="line">        encrypted_file.write(cipher_aes.nonce)</span><br><span class="line">        encrypted_file.write(tag)</span><br><span class="line">        encrypted_file.write(ciphertext)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    This function is used to decrypt the file, which uses the private RSA key.</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">decrypt</span>(<span class="params">filename</span>):</span><br><span class="line">    pwd = <span class="string">b&#x27;secret&#x27;</span></span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(filename, <span class="string">&#x27;rb&#x27;</span>) <span class="keyword">as</span> fobj:</span><br><span class="line">        <span class="comment"># 导入私钥</span></span><br><span class="line">        private_key = RSA.import_key(<span class="built_in">open</span>(<span class="string">&#x27;my_private_key.bin&#x27;</span>).read(), passphrase=pwd)</span><br><span class="line">        <span class="comment"># 会话密钥， 随机数，消息认证码，机密的数据</span></span><br><span class="line">        enc_session_key, nonce, tag, ciphertext = [fobj.read(x)</span><br><span class="line">                                                   <span class="keyword">for</span> x <span class="keyword">in</span> (private_key.size_in_bytes(),</span><br><span class="line">                                                             <span class="number">16</span>, <span class="number">16</span>, -<span class="number">1</span>)]</span><br><span class="line">        cipher_rsa = PKCS1_OAEP.new(private_key)</span><br><span class="line">        session_key = cipher_rsa.decrypt(enc_session_key)</span><br><span class="line">        cipher_aes = AES.new(session_key, AES.MODE_EAX, nonce)</span><br><span class="line">        <span class="comment"># 解密</span></span><br><span class="line">        data = cipher_aes.decrypt_and_verify(ciphertext, tag)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(filename, <span class="string">&#x27;wb&#x27;</span>) <span class="keyword">as</span> wobj:</span><br><span class="line">        wobj.write(data)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>(<span class="params">rootDir</span>):</span><br><span class="line">    list_dirs = os.walk(rootDir)</span><br><span class="line">    <span class="keyword">for</span> root, dirs, files <span class="keyword">in</span> list_dirs:</span><br><span class="line">        <span class="comment"># 切换加密和解密过程</span></span><br><span class="line">        mode = <span class="built_in">input</span>(<span class="string">&#x27;Choose what you want me to do:(1[Encrypt] or 2[Decrypt]) &#x27;</span>)</span><br><span class="line">        <span class="keyword">if</span> mode == <span class="string">&#x27;1&#x27;</span>:</span><br><span class="line">            <span class="comment"># 遍历文件，加密并且改名</span></span><br><span class="line">            <span class="keyword">for</span> f <span class="keyword">in</span> files:</span><br><span class="line">                filename = os.path.join(root, f)</span><br><span class="line">                encrypt(filename)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="comment"># 遍历文件，解密并且恢复名字</span></span><br><span class="line">            <span class="keyword">for</span> f <span class="keyword">in</span> files:</span><br><span class="line">                filename = os.path.join(root, f)</span><br><span class="line">                decrypt(filename)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    <span class="comment">#create_rsa_keys()</span></span><br><span class="line">    filename = <span class="string">&#x27;H:\\MEI_BLOG\\source\\_posts&#x27;</span></span><br><span class="line">    main(filename)</span><br><span class="line">   </span><br></pre></td></tr></table></figure>
+
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Yo Poemi</span>
+                    </p>
+                
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span><strong>Trust Yourself.</strong></span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/crypto/"># crypto</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2024/02/03/CTF-crypto-hiddenkey/">CTF-crypto-hiddenkey</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Yo Poemi | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>
