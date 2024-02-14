@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Yo Poemi">
+
+
+
+
+    <meta name="keywords" content="blog">
+
+
+<title>sagemath for kali--安装 | YoPoemi&#39;s blog</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">YoPoemi&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">YoPoemi&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    var tocbot_timer;
+    var DEPTH_MAX = 6; // 为 6 时展开所有
+    var tocbot_default_config = {
+        tocSelector: '.tocbot-list',
+        contentSelector: '.post-content',
+        headingSelector: 'h1, h2, h3, h4, h5',
+        orderedList: false,
+        scrollSmooth: true,
+        onClick: extend_click,
+    };
+
+    function extend_click() {
+        clearTimeout(tocbot_timer);
+        tocbot_timer = setTimeout(function() {
+            tocbot.refresh(obj_merge(tocbot_default_config, {
+                hasInnerContainers: true
+            }));
+        }, 420); // 这个值是由 tocbot 源码里定义的 scrollSmoothDuration 得来的
+    }
+
+    document.ready(function() {
+        tocbot.init(obj_merge(tocbot_default_config, {
+            collapseDepth: 1
+        }));
+    });
+
+    function expand_toc() {
+        var b = document.querySelector('.tocbot-toc-expand');
+        var expanded = b.getAttribute('data-expanded');
+        expanded ? b.removeAttribute('data-expanded') : b.setAttribute('data-expanded', true);
+        tocbot.refresh(obj_merge(tocbot_default_config, {
+            collapseDepth: expanded ? 1 : DEPTH_MAX
+        }));
+        b.innerText = expanded ? 'Expand all' : 'Collapse all';
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+    function obj_merge(target, source) {
+        for (var item in source) {
+            if (source.hasOwnProperty(item)) {
+                target[item] = source[item];
+            }
+        }
+        return target;
+    }
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">sagemath for kali--安装</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Yo Poemi</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">二月 14, 2024&nbsp;&nbsp;16:17:21</a>
+                        </span>
+                    
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p><img src="https://noyiz-github-io.oss-cn-beijing.aliyuncs.com/H:%5Cpicgo%5Cimageimage-20240214161802782.png" alt="image-20240214161802782"></p>
+<p>查资料发现是这个包没在kali的软件源里，但是可以通过更改&#x2F;etc&#x2F;apt&#x2F;sources.list来改变软件源。【关键还是要看软件包在哪个目录下，还有个问题就是sources.list下多个entries的时候系统会怎么处理，这个问题不再这节的讨论的范围内，以后有机会写。】</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ echo &#x27;deb https://mirrors.163.com/debian/ bookworm main contrib non-free&#x27; | sudo tee -a /etc/apt/sources.list</span><br><span class="line">$ sudo apt update</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>这个命令的含义是将一个特定的软件源（Debian 的 “bookworm” 版本）添加到系统的软件源列表中。具体地说：</p>
+<ul>
+<li><p><code>echo &#39;deb http://deb.debian.org/debian bookworm main contrib non-free&#39;</code>：这部分使用 <code>echo</code> 命令将指定的文本输出到标准输出（通常是终端）。在这里，它输出了一个包含 Debian “bookworm” 版本主要、贡献（contrib）和非自由（non-free）软件包的软件源的行。</p>
+</li>
+<li><p><code>|</code>：这个符号是管道操作符，它将命令的输出传递给下一个命令作为输入。</p>
+</li>
+<li><p><code>sudo tee -a /etc/apt/sources.list</code>：<code>tee</code> 命令用于从标准输入读取数据并写入到文件，同时也会将数据输出到标准输出。<code>-a</code> 选项表示追加模式，即在文件末尾添加而不是覆盖原有内容。<code>sudo</code> 命令用于以超级用户权限执行命令。因此，这部分命令将管道操作符左侧命令的输出作为输入，并以超级用户权限将其追加到 <code>/etc/apt/sources.list</code> 文件中，这是 Debian 系统中存储软件源信息的文件。</p>
+</li>
+</ul>
+<p>综合起来，这个命令的作用是将指定的 Debian “bookworm” 版本的软件源添加到系统的软件源列表中。</p>
+</blockquote>
+<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><p>需要检查Debian的最新版本，然后更换命令中关于“bookworm”的部分，可以在<a target="_blank" rel="noopener" href="https://wiki.debian.org/SourcesList%E6%9F%A5%E7%9C%8B%E3%80%82">https://wiki.debian.org/SourcesList查看。</a></p>
+<h2 id="关于sources-list"><a href="#关于sources-list" class="headerlink" title="关于sources.list"></a>关于sources.list</h2><p>这里面的内容通常是以下格式：</p>
+<blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">deb http://site.example.com/debian distribution component1 component2 component3</span><br><span class="line">deb-src http://site.example.com/debian distribution component1 component2 component3</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>【Archive type】</p>
+<ul>
+<li>“deb”：表示存档包含的是二进制软件包（deb）。这些二进制软件包是预编译的，通常是我们直接使用的软件包。当我们使用 apt-get 或 apt 命令安装软件时，实际上是从这些二进制软件包中获取软件安装。</li>
+<li>“deb-src”：表示存档包含的是源码软件包。源码软件包包含原始程序源代码以及 Debian 控制文件（.dsc）和 diff.gz 文件，其中包含了对程序打包所需的更改。这些源码软件包通常用于开发者或者希望进行定制编译的用户。通过这些源码软件包，用户可以查看程序的源代码，并对其进行修改、编译或重新打包。</li>
+</ul>
+<p>【Repository URL】</p>
+<p>软件包的来源。[去<a target="_blank" rel="noopener" href="https://www.debian.org/mirror/list%E6%89%BE]">https://www.debian.org/mirror/list找]</a></p>
+<p><img src="https://noyiz-github-io.oss-cn-beijing.aliyuncs.com/H:%5Cpicgo%5Cimageimage-20240214170753439.png" alt="image-20240214170753439"></p>
+<p>【Distribution】【没太懂这部分的区别，但是大部分情况用的都是code name】</p>
+<p>解释了在编辑 Debian 的软件源列表时应该如何指定版本。主要有两种方式：</p>
+<ol>
+<li>使用版本的代号（release code name）：这些代号包括 stretch、buster、bullseye、bookworm 和 sid。你可以直接使用这些代号来跟踪特定版本的 Debian，例如，如果你想要跟踪 Debian 11（代号为 bullseye），你可以在软件源列表中使用 “bullseye”。</li>
+<li>使用版本的类别（release class）：这些类别包括 oldoldstable、oldstable、stable、testing 和 unstable。你可以使用这些类别来跟踪一个版本的整个生命周期。</li>
+</ol>
+<p>此外，这段话还建议避免在软件源列表中使用 “stable”，因为这会导致在下一个版本发布时出现意外或系统损坏。</p>
+<ul>
+<li><p>如果你想要跟踪一个版本的整个生命周期，从开发阶段到稳定发布再到支持结束，你应该使用版本类别（release class），如 oldoldstable、oldstable、stable、testing 和 unstable。使用类别的好处在于，你将始终跟踪特定的开发阶段或者稳定版本，不会受到代号变化的影响。</p>
+</li>
+<li><p>如果你只关心特定版本的发布点，比如你只想跟踪 Debian 的特定发布版本而不关心其后续开发进度，那么你应该使用版本的代号（code name）。例如，你只想跟踪 Debian 11（代号为 bullseye），你可以直接使用 “bullseye”，这样无论该版本处于什么状态，你都会保持跟踪。</p>
+</li>
+</ul>
+<p>【Component】</p>
+<ul>
+<li><strong>main</strong>   Debian 里最基本及主要且符合自由软件规范的软件 ( packages )。</li>
+<li><strong>contrib</strong>   这里头软件虽然可以在 Debian 里头运作，即使本身属于自由软件但多半却是相依于非自由 ( non-free ) 软件。</li>
+<li><strong>non-free</strong>  不属于自由软件范畴的软件。</li>
+</ul>
+<h2 id="sources-list的写法"><a href="#sources-list的写法" class="headerlink" title="sources.list的写法"></a>sources.list的写法</h2><p>Debian 有自己独特的版本系统，整个系统有三个版本，分别为稳定版(stable)，测试版(testing)和不稳定版(unstable&#x2F;sid)。每次发布的版本都是稳定版，而测试版在经过一段时间的测试证明没有问题后会成为新的稳定。因为稳定版是会更新的，为了便于区分不同时期的稳定版，每个版本又有自己特有的代号(在<a target="_blank" rel="noopener" href="https://wiki.debian.org/DebianStable%E4%B8%AD%E6%9F%A5%E7%9C%8B)%EF%BC%8C%E7%8E%B0%E5%9C%A8%E7%9A%84%E7%A8%B3%E5%AE%9A%E7%89%88%E7%A7%B0%E4%B8%BA">https://wiki.debian.org/DebianStable中查看)，现在的稳定版称为</a> bookworm(debian 12.5，截至2024.2.10)，而不稳定版的代号永远是 sid。<img src="https://noyiz-github-io.oss-cn-beijing.aliyuncs.com/H:%5Cpicgo%5Cimageimage-20240214165313008.png" alt="image-20240214165313008"></p>
+<p><img src="https://noyiz-github-io.oss-cn-beijing.aliyuncs.com/H:%5Cpicgo%5Cimageimage-20240214165414462.png"></p>
+<p><img src="https://noyiz-github-io.oss-cn-beijing.aliyuncs.com/H:%5Cpicgo%5CimageH%3A%255Cpicgo%255Cimageimage-20240214170619311.png"></p>
+<p><img src="https://noyiz-github-io.oss-cn-beijing.aliyuncs.com/H:%5Cpicgo%5Cimageimage-20240214171037548.png" alt="image-20240214171037548"></p>
+<p><img src="https://noyiz-github-io.oss-cn-beijing.aliyuncs.com/H:%5Cpicgo%5Cimageimage-20240214171028027.png" alt="image-20240214171028027"></p>
+<ul>
+<li>&#x2F;dists&#x2F; 目录包含”发行版”(distributions), 此处是获得 Debian 发布版本(releases)和已发布版本(pre-releases)的软件包的正规途径. 有些旧软件包及 packages.gz 文件仍在里面.</li>
+<li>&#x2F;pool&#x2F; 目录为软件包的物理地址. 软件包均放进一个巨大的 “池子(pool)”, 按照源码包名称分类存放. 为了方便管理, pool 目录下按属性再分类(“main”, “contrib” 和 “non-free”), 分类下面再按源码包名称的首字母归档. 这些目录包含的文件有: 运行于各种系统架构的二进制软件包, 生成这些二进制软件包的源码包.你可以执行命令 apt-cache showsrc mypackagename, 查看 ‘Directory:’ 行获知每个软件包的存放位置. 例如: apache 软件包存放在 pool&#x2F;main&#x2F;a&#x2F;apache&#x2F; 目录中.另外, 由于lib*软件包数量巨大, 它们以特殊的方式归档: 例如, libpaper 软件包存放在 pool&#x2F;main&#x2F;libp&#x2F;libpaper&#x2F;.</li>
+</ul>
+<p>下面就是书写sources.list的步骤：</p>
+<p><strong>1)<strong>在镜像网站<a target="_blank" rel="noopener" href="https://mirrors.163.com/debian/%E4%B8%AD%EF%BC%8C%E6%89%BE%E5%88%B0%E5%8C%85%E5%90%AB">https://mirrors.163.com/debian/中，找到包含</a></strong>dists</strong>和<strong>pool</strong>这两个目录的那个目录，把地址记下来，比如<a target="_blank" rel="noopener" href="http://mirrors.163.com/debian/">http://mirrors.163.com/debian/</a>;</p>
+<p>**2)**打开dists，里面包含的目录名字，记下来。比如<a target="_blank" rel="noopener" href="http://mirrors.163.com/debian/%EF%BC%8Cdists/%E5%8C%85%E5%90%ABwheezy%E3%80%81testing%E7%AD%89%E3%80%82%E6%8A%8A%E8%BF%99%E4%BA%9B%E7%9B%AE%E5%BD%95%E5%90%8D%E5%AD%97%E8%AE%B0%E4%B8%8B%E6%9D%A5%E3%80%82">http://mirrors.163.com/debian/，dists/包含wheezy、testing等。把这些目录名字记下来。</a></p>
+<p><strong>3)<strong>打开</strong>pool</strong>目录，看看里面包含哪些组件目录，比如main、contrib、non-free；</p>
+<p>**4)<strong>书写格式：</strong>deb &lt;1记下来的地址&gt; &lt;2记下来的目录名&gt; &lt;3记下来的名字**&gt;。</p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Yo Poemi</span>
+                    </p>
+                
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span><strong>Trust Yourself.</strong></span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/%E6%9D%82%E6%9D%82%E6%9D%82/"># 杂杂杂</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2024/02/06/Crypto-%E7%A6%BB%E6%95%A3%E5%AF%B9%E6%95%B0/">Crypto-离散对数</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Yo Poemi | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>
