@@ -234,12 +234,13 @@
 <p>…..</p>
 <p>M14：28 00 00 00</p>
 <p>M15：00 00 00 00</p>
-<p>经过“<strong>3. 分组数据处理</strong>”后，a、b、c、d值分别为0xD8523F60、0x837E0144、0x517726CA、0x1BB6E5FE</p>
+<p>经过<strong>分组数据处理</strong>后，a、b、c、d值分别为0xD8523F60、0x837E0144、0x517726CA、0x1BB6E5FE</p>
 <p>在内存中为a：60 3F 52 D8</p>
 <p>b：44 01 7E 83</p>
 <p>c：CA 26 77 51</p>
 <p>d：FE E5 B6 1B</p>
 <p>a、b、c、d按内存顺序输出即为最终结果：603F52D844017E83CA267751FEE5B61B。这就是字符串“jklmn”的MD5值。</p>
+<p>具体步骤参照<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/37257569">https://zhuanlan.zhihu.com/p/37257569</a></p>
 <h2 id="Hash-预览"><a href="#Hash-预览" class="headerlink" title="Hash 预览"></a>Hash 预览</h2><p>每种 Hash算法 都有一个构造器，比如 hashlib.sha256() ，它将返回一个 hash 对象。 不同算法的 hash对象 拥有同一的接口。</p>
 <p>使用 <code>hashlib</code> 加密字符串的步骤:</p>
 <ul>
