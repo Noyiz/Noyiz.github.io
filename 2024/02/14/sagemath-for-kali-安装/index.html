@@ -214,7 +214,7 @@
         <div class="post-content">
             <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p><img src="https://noyiz-github-io.oss-cn-beijing.aliyuncs.com/H:%5Cpicgo%5Cimageimage-20240214161802782.png" alt="image-20240214161802782"></p>
 <p>查资料发现是这个包没在kali的软件源里，但是可以通过更改&#x2F;etc&#x2F;apt&#x2F;sources.list来改变软件源。【关键还是要看软件包在哪个目录下，还有个问题就是sources.list下多个entries的时候系统会怎么处理，这个问题不再这节的讨论的范围内，以后有机会写。】</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ echo &#x27;deb https://mirrors.163.com/debian/ bookworm main contrib non-free&#x27; | sudo tee -a /etc/apt/sources.list</span><br><span class="line">$ sudo apt update</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ echo &#x27;deb https://mirrors.163.com/debian/ bookworm main contrib non-free&#x27; | sudo tee -a /etc/apt/sources.list</span><br><span class="line"></span><br><span class="line">echo &#x27;deb https://mirrors.tuna.tsinghua.edu.cn/debian/ bookworm main contrib non-free&#x27; | sudo tee -a /etc/apt/sources.list</span><br><span class="line">$ </span><br><span class="line">45</span><br></pre></td></tr></table></figure>
 
 <blockquote>
 <p>这个命令的含义是将一个特定的软件源（Debian 的 “bookworm” 版本）添加到系统的软件源列表中。具体地说：</p>
@@ -319,6 +319,8 @@
             </div>
         </section>
         <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2024/02/17/Crypto-MD5/">Crypto-MD5</a>
             
             
             <a class="next" rel="next" href="/2024/02/06/Crypto-%E7%A6%BB%E6%95%A3%E5%AF%B9%E6%95%B0/">Crypto-离散对数</a>
